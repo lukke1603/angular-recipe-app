@@ -10,22 +10,22 @@ export class RecipeService {
   recipesChanged = new Subject<Recipe[]>();
 
   private recipes: Recipe[] = [
-    new Recipe(
-      'Cheeseburger',
-      'leckere Rindfleischburger mit Käse',
-      'https://image.brigitte.de/12444002/t/dg/v3/w960/r1/-/burger-vom-grill.jpg',
-      [
-        new Ingredient('Buns', 2),
-        new Ingredient('Meat', 2),
-        new Ingredient('Onions', 1),
-      ]
-    ),
-    new Recipe(
-      'Paniertes Schnitzel',
-      'Paniertes Schnitzel mit Pommes und Salat',
-      'https://www.ndr.de/ratgeber/kochen/schnitzel170_v-contentxl.jpg',
-      [new Ingredient('Meat', 1), new Ingredient('French Fries', 20)]
-    ),
+    // new Recipe(
+    //   'Cheeseburger',
+    //   'leckere Rindfleischburger mit Käse',
+    //   'https://image.brigitte.de/12444002/t/dg/v3/w960/r1/-/burger-vom-grill.jpg',
+    //   [
+    //     new Ingredient('Buns', 2),
+    //     new Ingredient('Meat', 2),
+    //     new Ingredient('Onions', 1),
+    //   ]
+    // ),
+    // new Recipe(
+    //   'Paniertes Schnitzel',
+    //   'Paniertes Schnitzel mit Pommes und Salat',
+    //   'https://www.ndr.de/ratgeber/kochen/schnitzel170_v-contentxl.jpg',
+    //   [new Ingredient('Meat', 1), new Ingredient('French Fries', 20)]
+    // ),
   ];
 
   constructor(private shoppingListService:ShoppingListService){}
@@ -56,6 +56,12 @@ export class RecipeService {
 
   deleteRecipe(index: number){
     this.recipes.splice(index, 1);
+    this.recipesChanged.next(this.recipes.slice());
+  }
+
+
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
     this.recipesChanged.next(this.recipes.slice());
   }
 }
