@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
+import { LoggingService } from "../logging.service";
 import { SharedModule } from "../shared/shared.module";
 import { ShoppingEditComponent } from "./shopping-edit/shopping-edit.component";
 import { ShoppingListComponent } from "./shopping-list.component";
@@ -14,10 +15,13 @@ import { ShoppingListComponent } from "./shopping-list.component";
     SharedModule,
     FormsModule,
     RouterModule.forChild([
-      { path: 'shopping-list', component: ShoppingListComponent },
+      { path: '', component: ShoppingListComponent },
     ])
   ],
-  exports: []
+  exports: [],
+  providers: [
+    LoggingService
+  ]
 })
 export class ShoppingListModule{
 
